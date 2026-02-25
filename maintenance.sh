@@ -1,5 +1,3 @@
-i want to have a good maintenance script for my steam deck that i plan on executing once every week for improving the performance of my steam deck amazing like the ultimate script simply run the script and it will execute (no prompts required) rate it from 1/10
-
 #!/usr/bin/env bash
 # Steam Deck Weekly Maintenance (EXECUTE & FORGET)
 
