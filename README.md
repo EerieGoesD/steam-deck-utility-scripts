@@ -24,18 +24,24 @@ Personal collection of useful scripts for the Steam Deck.
 ### Fixes
 
 - **`gamescope-reset.sh`**
-  - Clears Gamescope user state/config.
+  - Clears Gamescope user state/config to resolve issues like flickering caused by corrupted settings.
   - Runs:
     - `rm -rf ~/.local/state/gamescope`
     - `rm -rf ~/.config/gamescope`
-  - Can fix screen flickering issues in Gaming Mode.
-  - Reboot afterwards.
+  - Reboot after running.
+
+- **`steamdeck-recovery.sh`**
+  - Recovery script for common Steam Deck issues (Steam boot loops + Gamescope corruption).
+  - Renames `~/.local/share/Steam` to a backup folder (preserves data, forces Steam to reinitialize on next launch).
+  - Clears Gamescope user state/config:
+    - `rm -rf ~/.local/state/gamescope`
+    - `rm -rf ~/.config/gamescope`
+  - You will need to sign back into Steam afterwards.
+  - Reboot after running.
 
 ### Boot Loop Fix
 
 - **`steam-reset.sh`**
-  - Runs:
-  - `mv ~/.local/share/Steam ~/.local/share/Steam_backup`
   - Renames `~/.local/share/Steam` to `Steam_backup`, making Steam treat the next launch as a fresh install.
   - Can fix boot loop issues.
   - Nothing is deleted.
