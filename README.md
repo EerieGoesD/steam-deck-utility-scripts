@@ -38,6 +38,12 @@ Personal collection of useful scripts for the Steam Deck.
     - `steam-reset.sh`
   - Reboot recommended after running.
 
+### ROM Management
+- **`duplicate-rom-finder.sh`**
+  - Finds duplicate ROM files across all console folders.
+  - Shows each duplicate's name and location.
+  - Useful for freeing up SD card space.
+    
 ## Feedback
 Created by **[EERIE](https://linktr.ee/eeriegoesd)**  
 Support: https://buymeacoffee.com/eeriegoesd
