@@ -1,1 +1,0 @@
-find /run/media/EmuDeck/Emulation/roms -type f \( -name "*.7z" -o -name "*.zip" -o -name "*.chd" -o -name "*.iso" -o -name "*.bin" -o -name "*.cue" \) | sed 's|.*/||' | sort | uniq -d | while read f; do echo "=== $f ==="; find /run/media/EmuDeck/Emulation/roms -name "$f"; done
