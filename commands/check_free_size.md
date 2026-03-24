@@ -1,1 +1,1 @@
-df -h /home
+df -h /home /run/media/EmuDeck
