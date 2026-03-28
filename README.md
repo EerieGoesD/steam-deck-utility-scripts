@@ -49,7 +49,14 @@ Personal collection of useful scripts for the Steam Deck.
   - Scans `/home/deck` and `/run/media/deck` while skipping known roms paths and system folders.
   - Shows file size and full path for each result.
   - Covers a wide range of ROM extensions (`.chd`, `.iso`, `.nsp`, `.gba`, `.nes`, etc.).
-    
+
+### Uninstallers
+- **`uninstall_decky.sh`**
+  - Uninstalls Decky Loader using the official SteamDeckHomebrew uninstall script.
+
+## Desktop Shortcuts
+The `desktop/` folder contains `.desktop` files you can copy to `~/Desktop/` for quick double-click access. Right-click and "Mark as Trusted" after copying.
+
 ## Feedback
 Created by **[EERIE](https://linktr.ee/eeriegoesd)**  
 Support: https://buymeacoffee.com/eeriegoesd

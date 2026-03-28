@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Uninstall Decky Loader
+Exec=konsole -e bash '/home/deck/Documents/GitHub/steam-deck-utility-scripts/scripts/uninstall_decky.sh'
+Icon=utilities-terminal
+Type=Application
