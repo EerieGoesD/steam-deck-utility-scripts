@@ -9,14 +9,14 @@ KNOWN_ROMS_DIRS=(
 )
 
 ROM_EXTENSIONS=(
-  "*.7z" "*.zip" "*.chd" "*.iso" "*.bin" "*.cue"
+  "*.7z" "*.chd" "*.iso" "*.cue"
   "*.nsp" "*.xci" "*.nca"
   "*.gba" "*.gbc" "*.gb" "*.nds" "*.3ds" "*.cia"
   "*.nes" "*.sfc" "*.smc" "*.n64" "*.z64" "*.v64"
   "*.gcm" "*.rvz" "*.wbfs" "*.wad" "*.dol"
   "*.pbp" "*.cso"
   "*.xex" "*.xbe"
-  "*.gen" "*.sms" "*.gg"
+  "*.sms" "*.gg"
   "*.a26" "*.a52" "*.a78"
   "*.lnx"
   "*.pce"
@@ -32,11 +32,10 @@ SEARCH_PATHS=(
 )
 
 PRUNE_DIRS=(
-  "/home/deck/.local/share/Steam/steamapps"
-  "/home/deck/.local/share/Steam/ubuntu12_32"
-  "/home/deck/.local/share/Steam/ubuntu12_64"
-  "/home/deck/.local/share/Steam/package"
+  "/home/deck/.local/share/Steam"
   "/home/deck/.local/share/flatpak"
+  "/home/deck/.local/share/duckstation"
+  "/home/deck/.local/share/ULWGL"
   "/home/deck/.var"
   "/home/deck/.cache"
   "/home/deck/.config"
@@ -48,6 +47,9 @@ PRUNE_DIRS=(
   "/home/deck/.npm"
   "/home/deck/.nvm"
   "/home/deck/homebrew"
+  "/home/deck/yay"
+  "/run/media/deck/EmuDeck/Emulation/bios"
+  "/run/media/deck/EmuDeck/Emulation/storage"
 )
 
 # Skip common non-ROM directories (node_modules, .git, etc.)
@@ -57,6 +59,9 @@ PRUNE_NAMES=(
   "__pycache__"
   ".venv"
   "venv"
+  ".flatpak-builder"
+  "cache"
+  "Cache"
 )
 
 # Build the find command
