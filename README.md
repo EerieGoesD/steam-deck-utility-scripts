@@ -43,6 +43,12 @@ Personal collection of useful scripts for the Steam Deck.
   - Finds duplicate ROM files across all console folders.
   - Shows each duplicate's name and location.
   - Useful for freeing up SD card space.
+
+- **`find_lost_roms.sh`**
+  - Searches for ROM files that ended up outside the standard EmuDeck roms directories.
+  - Scans `/home/deck` and `/run/media/deck` while skipping known roms paths and system folders.
+  - Shows file size and full path for each result.
+  - Covers a wide range of ROM extensions (`.chd`, `.iso`, `.nsp`, `.gba`, `.nes`, etc.).
     
 ## Feedback
 Created by **[EERIE](https://linktr.ee/eeriegoesd)**  
