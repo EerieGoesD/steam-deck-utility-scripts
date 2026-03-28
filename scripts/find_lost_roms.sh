@@ -87,3 +87,5 @@ else
   echo ""
   echo "Found $found file(s)."
 fi
+
+read -p "Press Enter to close..."
