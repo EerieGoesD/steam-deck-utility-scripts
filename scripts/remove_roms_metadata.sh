@@ -1,4 +1,5 @@
 #!/bin/bash
 rm -rf /run/media/deck/EmuDeck/Emulation/tools/downloaded_media/
-echo "Done. Media cleared."
+find ~/.config/EmuDeck/backend/configs/emulationstation/gamelists/ -name "gamelist.xml" -delete
+echo "Done. Media and metadata cleared."
 read -p "Press Enter to close..."
