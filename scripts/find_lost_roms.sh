@@ -16,7 +16,7 @@ ROM_EXTENSIONS=(
   "*.gcm" "*.rvz" "*.wbfs" "*.wad" "*.dol"
   "*.pbp" "*.cso"
   "*.xex" "*.xbe"
-  "*.gen" "*.md" "*.sms" "*.gg"
+  "*.gen" "*.sms" "*.gg"
   "*.a26" "*.a52" "*.a78"
   "*.lnx"
   "*.pce"
@@ -41,6 +41,22 @@ PRUNE_DIRS=(
   "/home/deck/.cache"
   "/home/deck/.config"
   "/home/deck/.local/share/Trash"
+  "/home/deck/.local/share/baloo"
+  "/home/deck/.local/lib"
+  "/home/deck/.cargo"
+  "/home/deck/.rustup"
+  "/home/deck/.npm"
+  "/home/deck/.nvm"
+  "/home/deck/homebrew"
+)
+
+# Skip common non-ROM directories (node_modules, .git, etc.)
+PRUNE_NAMES=(
+  "node_modules"
+  ".git"
+  "__pycache__"
+  ".venv"
+  "venv"
 )
 
 # Build the find command
@@ -49,6 +65,11 @@ FIND_ARGS=()
 # Add prune rules for known roms dirs and system dirs
 for dir in "${KNOWN_ROMS_DIRS[@]}" "${PRUNE_DIRS[@]}"; do
   FIND_ARGS+=( -path "$dir" -prune -o )
+done
+
+# Add prune rules by directory name
+for name in "${PRUNE_NAMES[@]}"; do
+  FIND_ARGS+=( -name "$name" -prune -o )
 done
 
 # Add extension matches
