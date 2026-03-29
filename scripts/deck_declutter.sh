@@ -7,6 +7,7 @@ TARGETS=(
   "/home/deck/Applications/ES-DE.AppImage_3.3.0.OLD"
   "/home/deck/deck-toolbox/.flatpak-builder"
   "/home/deck/yay/src/gopath/pkg/mod/cache"
+  "/home/deck/.cache/go-build"
   "/home/deck/.local/share/ULWGL/ULWGL-launcher.tar.gz"
   "/home/deck/.cache/winetricks/directx9"
   "/run/media/deck/EmuDeck/Emulation/bios/Citron-0.7.1-anylinux-x86_64.AppImage"
