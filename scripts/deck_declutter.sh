@@ -1,6 +1,5 @@
 #!/bin/bash
 # Removes known clutter files from the Steam Deck.
-# Shows each item and asks for confirmation before deleting.
 
 TARGETS=(
   "/home/deck/fresh.flatpak"
@@ -16,11 +15,11 @@ TARGETS=(
 echo "=== Steam Deck Declutter ==="
 echo ""
 
-deleted=0
-freed=0
-
+# Show what was found
+found=()
 for path in "${TARGETS[@]}"; do
   if [ -e "$path" ]; then
+    found+=("$path")
     if [ -d "$path" ]; then
       size=$(du -sh "$path" 2>/dev/null | cut -f1)
       echo "  [$size]  $path/"
@@ -28,22 +27,49 @@ for path in "${TARGETS[@]}"; do
       size=$(du -h "$path" 2>/dev/null | cut -f1)
       echo "  [$size]  $path"
     fi
-    read -p "  Delete? (y/N): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
-      rm -rf "$path"
-      echo "  Deleted."
-      ((deleted++))
-    else
-      echo "  Kept."
-    fi
-    echo ""
   fi
 done
 
-if (( deleted == 0 )); then
-  echo "Nothing was deleted."
-else
-  echo "Deleted $deleted item(s)."
+if (( ${#found[@]} == 0 )); then
+  echo "No clutter found."
+  read -p "Press Enter to close..."
+  exit 0
 fi
+
+echo ""
+echo "Delete [a]ll, prompt [i]ndividually, or [c]ancel?"
+read -p "Choice (a/i/c): " mode
+
+deleted=0
+
+case "$mode" in
+  a|A)
+    for path in "${found[@]}"; do
+      rm -rf "$path"
+      echo "  Deleted: $path"
+      ((deleted++))
+    done
+    ;;
+  i|I)
+    for path in "${found[@]}"; do
+      read -p "  Delete $path? (y/N): " confirm
+      if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        rm -rf "$path"
+        echo "    Deleted."
+        ((deleted++))
+      else
+        echo "    Kept."
+      fi
+    done
+    ;;
+  *)
+    echo "Cancelled."
+    read -p "Press Enter to close..."
+    exit 0
+    ;;
+esac
+
+echo ""
+echo "Deleted $deleted item(s)."
 
 read -p "Press Enter to close..."
