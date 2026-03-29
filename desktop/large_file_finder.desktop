@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Large File Finder
+Exec=konsole -e bash '/home/deck/Documents/GitHub/steam-deck-utility-scripts/scripts/large_file_finder.sh'
+Icon=utilities-terminal
+Type=Application
