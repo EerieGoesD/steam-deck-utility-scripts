@@ -56,13 +56,11 @@ Personal collection of useful scripts for the Steam Deck.
   - Checks known Decky paths (`~/homebrew`, systemd services, configs).
   - Also searches by name for anything with "decky" or "plugin_loader" in it.
 
-- **`cleanup_decky.sh`**
-  - Removes leftover Decky Loader files (`~/homebrew`, old systemd services).
-  - Shows everything that will be deleted with sizes before asking for confirmation.
-
 ### Uninstallers
 - **`uninstall_decky.sh`**
   - Uninstalls Decky Loader using the official SteamDeckHomebrew uninstall script.
+  - Cleans up Decky system files (services, logs, loader config, template plugin).
+  - Leaves your own plugins and their data intact.
 
 ## Desktop Shortcuts
 The `desktop/` folder contains `.desktop` files you can copy to `~/Desktop/` for quick double-click access. Right-click and "Mark as Trusted" after copying.

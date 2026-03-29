@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Cleanup Decky Leftovers
-Exec=konsole -e bash '/home/deck/Documents/GitHub/steam-deck-utility-scripts/scripts/cleanup_decky.sh'
-Icon=utilities-terminal
-Type=Application
