@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=ROM Size Sorter
+Exec=konsole -e bash '/home/deck/Documents/GitHub/steam-deck-utility-scripts/scripts/rom_size_sorter.sh'
+Icon=utilities-terminal
+Type=Application
