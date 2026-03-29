@@ -27,50 +27,49 @@ read -p "Show top how many results? [50]: " count
 count=${count:-50}
 
 echo ""
+echo "Scanning... (this may take a moment)"
+echo ""
 echo "=== Largest items ==="
 echo ""
 
-# Build exclude args for grep
-EXCLUDE_PATTERN=""
+# Build prune args for find/du
+PRUNE_ARGS=()
 if [[ "$exclude_roms" =~ ^[Yy]$ ]]; then
   for dir in "${ROMS_DIRS[@]}"; do
-    if [ -z "$EXCLUDE_PATTERN" ]; then
-      EXCLUDE_PATTERN="$dir"
-    else
-      EXCLUDE_PATTERN="$EXCLUDE_PATTERN|$dir"
-    fi
+    PRUNE_ARGS+=(-path "$dir" -prune -o)
   done
 fi
 
-# Pick du flags based on mode
 case "$mode" in
-  1) du_flags="-ah --max-depth=0" ; use_find=true ;;
-  2) du_flags="-h --max-depth=5" ; use_find=false ;;
-  *) du_flags="-ah" ; use_find=false ;;
+  1)
+    # Files only: find with prune, print files, du -h each batch
+    find /home/deck /run/media/deck "${PRUNE_ARGS[@]}" -type f -print0 2>/dev/null \
+      | xargs -0 du -h 2>/dev/null \
+      | sort -rh | head -"$count"
+    ;;
+  2)
+    # Directories only: du -d1 on top-level, then sort
+    {
+      for dir in /home/deck /run/media/deck; do
+        if [[ "$exclude_roms" =~ ^[Yy]$ ]]; then
+          du -h --max-depth=3 "$dir" 2>/dev/null | grep -Ev "$(printf '%s|' "${ROMS_DIRS[@]}" | sed 's/|$//')"
+        else
+          du -h --max-depth=3 "$dir" 2>/dev/null
+        fi
+      done
+    } | sort -rh | head -"$count"
+    ;;
+  *)
+    # Both
+    {
+      if [[ "$exclude_roms" =~ ^[Yy]$ ]]; then
+        du -ah /home/deck /run/media/deck 2>/dev/null | grep -Ev "$(printf '%s|' "${ROMS_DIRS[@]}" | sed 's/|$//')"
+      else
+        du -ah /home/deck /run/media/deck 2>/dev/null
+      fi
+    } | sort -rh | head -"$count"
+    ;;
 esac
-
-if $use_find 2>/dev/null; then
-  # Files only: use find to list files, then du each
-  {
-    find /home/deck /run/media/deck -type f 2>/dev/null
-  } | while IFS= read -r f; do
-    du -h "$f" 2>/dev/null
-  done | {
-    if [ -n "$EXCLUDE_PATTERN" ]; then
-      grep -Ev "$EXCLUDE_PATTERN"
-    else
-      cat
-    fi
-  } | sort -rh | head -"$count"
-else
-  du $du_flags /home/deck /run/media/deck 2>/dev/null | {
-    if [ -n "$EXCLUDE_PATTERN" ]; then
-      grep -Ev "$EXCLUDE_PATTERN"
-    else
-      cat
-    fi
-  } | sort -rh | head -"$count"
-fi
 
 echo ""
 read -p "Press Enter to close..."
