@@ -50,6 +50,12 @@ Personal collection of useful scripts for the Steam Deck.
   - Shows file size and full path for each result.
   - Covers a wide range of ROM extensions (`.chd`, `.iso`, `.nsp`, `.gba`, `.nes`, etc.).
 
+### Cleanup
+- **`find_decky_leftovers.sh`**
+  - Searches for leftover Decky Loader files after uninstall.
+  - Checks known Decky paths (`~/homebrew`, systemd services, configs).
+  - Also searches by name for anything with "decky" or "plugin_loader" in it.
+
 ### Uninstallers
 - **`uninstall_decky.sh`**
   - Uninstalls Decky Loader using the official SteamDeckHomebrew uninstall script.
