@@ -49,11 +49,7 @@ read -p "Delete these Decky leftovers? (y/N): " confirm
 if [[ "$confirm" =~ ^[Yy]$ ]]; then
   for path in "${TARGETS[@]}"; do
     if [ -e "$path" ]; then
-      if [[ "$path" == /etc/* ]]; then
-        sudo rm -rf "$path"
-      else
-        rm -rf "$path"
-      fi
+      sudo rm -rf "$path"
       echo "  Deleted: $path"
     fi
   done
